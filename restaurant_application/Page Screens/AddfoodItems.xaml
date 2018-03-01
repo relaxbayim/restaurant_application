@@ -1,0 +1,71 @@
+﻿<Page x:Class="restaurant_application.Page_Screens.AddfoodItems"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:restaurant_application.Page_Screens"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="AddfoodItems" HorizontalAlignment="Center">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="Visibility Converter" />
+        <Style TargetType="Label">
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+    </Page.Resources>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Height="150" Width="300" HorizontalAlignment="Center" >
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+               
+                </Grid.RowDefinitions>
+                <Label Foreground="Black" Margin="-1,0,205,0" Grid.ColumnSpan="2" FontWeight="Bold">yemek adı</Label>
+                <TextBox Text="{Binding SelectedFoodItem.Foodname, ValidatesOnDataErrors=True,
+                    UpdateSourceTrigger=PropertyChanged}"
+                         Name="foodnametxt" BorderBrush="AliceBlue" BorderThickness="0.1" Grid.Column="1" Margin="0,4,0,6" />
+                <Label Foreground="#111010" Margin="1,0,216,0" Grid.Row="1" Grid.ColumnSpan="2" FontWeight="Bold">Ücret:</Label>
+                <TextBox Text="{Binding SelectedFoodıtem.fPrice,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                         Name="Pricetxt" BorderBrush="AliceBlue" BorderThickness="0.1" Grid.Row="1" Grid.Column="1" Margin="0,4,0,6" />
+                <Label Foreground="#111010" Margin="-3,03,0" Grid.Row="2" FontWeight="Bold">açıklama</Label>
+                <TextBox Text="{Binding SelectedFoodItem.Description,
+                    ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Name="Descrptiontxt" BorderBrush="AliceBlue" BorderThickness="0.1" Grid.Column="1" Grid.Row="1"
+                         AcceptsReturn="True" Margin="0,50,0,-42"/>
+                <Button Content="yeni ekle" Name="AddItem" Visibility="{Binding CanNotModify, Converter={StaticResource Visibility Converter}}"
+            Margin="0,88,0,-50" Grid.Row="2" Grid.ColumnSpan="2" Click="AddItem_Click" />
+                <Button Command="{Binding UpdateCommand}" Visibility="{Binding CanModify,Converter={StaticResource Visibility Converter}}"
+                        Content="Ürünü yenile" Name="UpdateItem" Margin="19,121,168,-123" Grid.Row="2" Grid.ColumnSpan="2" />
+
+                <Button Content="Temizle" Name="Clear" Visibility="{Binding CannotModify,Converter={StaticResource Visibility Converter}}"
+                        Margin="0,88,0,-90" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Width="105" Click="Clear_Click" />
+                <Label x:Name="status" Content="{Binding Message,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="Green" Margin="-3,150,-5,-149" Grid.Row="2" HorizontalContentAlignment="Center" 
+                       FontSize="16" FontWeight="Bold" Grid.ColumnSpan="2" />
+                <Button x:Name="Button" Content="ürünü sil" Command="{Binding DeleteCommand}" Visibility="{Binding CanModify,Converter={StaticResource Visibility Converter}}"
+                        HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Grid.Column="1" Margin="101,125,0,-128" Grid.Row="2" Height="25" />
+
+            </Grid>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" Height="296">
+            <DataGrid Background="AliceBlue" x:Name="Fooditemgrid" Margin="3,105" ItemsSource="{Binding FoodItems}"
+                      SelectedItem="{Binding SelecteditemFood}" IsReadOnly="True" AutoGenerateColumns="False"
+                      ScrollViewer.CanContentScroll="True" Height="188">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Foodname}" Width="*" Header="yemekadı" />
+                <DataGridTextColumn Binding="{Binding Description}" Width="*" Header="Açıklama" />
+                <DataGridTextColumn Binding="{Binding FPrice}" Width="*" Header="ücret" />
+            </DataGrid.Columns>
+
+
+
+        </StackPanel>
+    </DockPanel>
+
+</Page>

@@ -1,0 +1,56 @@
+﻿<Window x:Class="restaurant_application.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:restaurant_application"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <DockPanel LastChildFill="True">
+        <Border BorderBrush="Aqua" DockPanel.Dock="Bottom" BorderThickness="1">
+            <StackPanel Background="AliceBlue" Orientation="Vertical">
+                <Label BorderBrush="AliceBlue"> bağlantı başarılı</Label>
+
+               </StackPanel>
+ 
+        </Border>
+        <Border BorderBrush="DarkBlue" DockPanel.Dock="left" BorderThickness="0.1" >
+            <StackPanel Background="AliceBlue" MinWidth="150">
+                <Label FontSize="24" Height="50" HorizontalContentAlignment="left" VerticalContentAlignment="Bottom"
+                       Foreground="#FF14B0BF" FontWeight="Bold" FontStyle="Italic">menu</Label>
+                <Button Name="Addıtem" Command="{Binding GetFoodListCommand}" Content="Yeni yiyecek ekle" Height="50"
+                        Click="Addıtem_Click" Background="Beige" Foreground="Green" FontSize="12" FontWeight="Bold" />
+
+                <Button Name="PlaceNewOrder" Content="Yeni sipariş alanı" Height="50" Click="PlaceNewOrder_Click" Background="Beige" Foreground="Red" FontSize="12"
+                        FontWeight="Bold" />
+
+                <Button Name="updateorder" Content="Siparişi güncelle" Background="Beige" Foreground="Chocolate" FontSize="12" FontWeight="Bold"
+                        Click="updateorder_Click"/>
+
+
+
+                <Button Name="Generatebill" Content="ödemeyi oluştur" Height="50"
+                        Click="Generatebill_Click" Background="Beige" Foreground="HotPink" FontSize="12" FontWeight="Bold"/>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="DarkBlue" BorderThickness="0.1" DockPanel.Dock="Top">
+            <StackPanel Background="Turquoise">
+                <Label BorderBrush="Black" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"
+                       Foreground="OrangeRed">görsel Tasarım III resApp</Label>
+            </StackPanel>
+        </Border>
+        <Grid RenderTransformOrigin="0.5,0.5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+            <Frame Background="AliceBlue" Grid.Row="0" Name="MainFrame" NavigationUIVisibility="Hidden" Grid.RowSpan="2" />
+
+        </Grid>
+    </DockPanel>
+    
+    
+    
+   
+</Window>
